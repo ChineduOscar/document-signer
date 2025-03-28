@@ -10,7 +10,7 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: 'PDF Signer and annotator',
+  title: 'PDF Annotator and Signer',
   description:
     'Easily upload, highlight, underline, comment, and sign your PDF documents online.',
 };
