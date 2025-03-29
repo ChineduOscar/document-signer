@@ -3,24 +3,25 @@ import { useEffect, useRef, useState } from 'react';
 import { useAppSelector } from '@/app/store';
 import Link from 'next/link';
 
-type WebViewerInstanceType = {
+interface webViewerInstance {
   Core: {
     documentViewer: {
       addEventListener: (event: string, callback: () => void) => void;
       removeEventListener: (event: string, callback: () => void) => void;
       loadDocument: (
-        blob: Blob,
+        file: Blob,
         options: { filename: string; extension: string }
       ) => Promise<void>;
     };
   };
-};
+}
 
 export default function PDFViewer() {
   const viewerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [instance, setInstance] = useState<WebViewerInstanceType | null>(null);
+  const [instance, setInstance] = useState<webViewerInstance | null>(null);
+
   const [domReady, setDomReady] = useState(false);
   const fileURL = useAppSelector((state) => state.pdf.fileURL);
   const fileMetadata = useAppSelector((state) => state.pdf.fileMetadata);
@@ -171,7 +172,7 @@ export default function PDFViewer() {
       isMounted = false;
       if (cleanup) cleanup();
     };
-  }, [instance, fileURL, fileMetadata, isLoading]);
+  }, [instance, fileURL, fileMetadata]);
 
   if (!fileMetadata || !fileURL) {
     return (
