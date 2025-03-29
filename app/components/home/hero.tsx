@@ -3,7 +3,7 @@ import DragAndDropUpload from './dragAndDropUplaod';
 
 const Hero = () => {
   return (
-    <section className='p-6 md:px-24 lg:px-64 py-20 text-center flex flex-col items-center'>
+    <section className='p-6 md:px-24 lg:px-64 py-10 md:py-20 text-center flex flex-col items-center'>
       <h1 className='text-3xl md:text-5xl font-bold text-gray-800 mb-4'>
         Annotate and Sign PDFs Easily
       </h1>

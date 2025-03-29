@@ -4,7 +4,7 @@ import uploadReducer from './slices/pdfSlice';
 
 export const store = configureStore({
   reducer: {
-    upload: uploadReducer,
+    pdf: uploadReducer,
   },
 });
 

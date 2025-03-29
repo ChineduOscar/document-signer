@@ -3,6 +3,7 @@ import { Outfit } from 'next/font/google';
 import './globals.css';
 import Header from './common/header';
 import ReduxProvider from '@/app/store/provider';
+import Footer from './common/footer';
 
 const outfit = Outfit({
   variable: '--font-geist-sans',
@@ -26,6 +27,7 @@ export default function RootLayout({
         <ReduxProvider>
           <Header />
           {children}
+          <Footer />
         </ReduxProvider>
       </body>
     </html>

@@ -27,7 +27,18 @@ const DragAndDropUpload: React.FC<UploadProps> = ({
       const file = acceptedFiles[0];
       const fileURL = URL.createObjectURL(file);
 
-      dispatch(setFiles(fileURL));
+      const fileMetadata = {
+        name: file.name,
+        size: file.size,
+        type: file.type,
+        lastModified: file.lastModified,
+      };
+      dispatch(
+        setFiles({
+          fileMetadata,
+          fileURL,
+        })
+      );
 
       router.push('/workspace');
       if (onUploadComplete) {
@@ -53,7 +64,6 @@ const DragAndDropUpload: React.FC<UploadProps> = ({
     maxFiles,
     maxSize,
     accept: {
-      'image/*': ['.jpeg', '.jpg', '.png', '.gif'],
       'application/pdf': ['.pdf'],
     },
   });
