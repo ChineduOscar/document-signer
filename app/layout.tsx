@@ -26,7 +26,7 @@ export default function RootLayout({
       <body className={`${outfit.className} antialiased`}>
         <ReduxProvider>
           <Header />
-          {children}
+          <div className='bg-white'>{children}</div>
           <Footer />
         </ReduxProvider>
       </body>
