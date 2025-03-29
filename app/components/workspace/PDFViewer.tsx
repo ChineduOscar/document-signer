@@ -14,14 +14,13 @@ type WebViewerInstanceType = {
       ) => Promise<void>;
     };
   };
-  [key: string]: any;
 };
 
 export default function PDFViewer() {
   const viewerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [instance, setInstance] = useState<WebViewerInstanceType | any>(null);
+  const [instance, setInstance] = useState<WebViewerInstanceType | null>(null);
   const [domReady, setDomReady] = useState(false);
   const fileURL = useAppSelector((state) => state.pdf.fileURL);
   const fileMetadata = useAppSelector((state) => state.pdf.fileMetadata);
