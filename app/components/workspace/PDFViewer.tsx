@@ -3,11 +3,25 @@ import { useEffect, useRef, useState } from 'react';
 import { useAppSelector } from '@/app/store';
 import Link from 'next/link';
 
+type WebViewerInstanceType = {
+  Core: {
+    documentViewer: {
+      addEventListener: (event: string, callback: () => void) => void;
+      removeEventListener: (event: string, callback: () => void) => void;
+      loadDocument: (
+        blob: Blob,
+        options: { filename: string; extension: string }
+      ) => Promise<void>;
+    };
+  };
+  [key: string]: any;
+};
+
 export default function PDFViewer() {
   const viewerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [instance, setInstance] = useState<any>(null);
+  const [instance, setInstance] = useState<WebViewerInstanceType | any>(null);
   const [domReady, setDomReady] = useState(false);
   const fileURL = useAppSelector((state) => state.pdf.fileURL);
   const fileMetadata = useAppSelector((state) => state.pdf.fileMetadata);
@@ -82,7 +96,7 @@ export default function PDFViewer() {
           }
         };
 
-        const onDocumentLoadFailure = (error: any) => {
+        const onDocumentLoadFailure = () => {
           if (isMounted) {
             setError(
               'Failed to load the document. Please check if the file is valid.'
@@ -158,7 +172,7 @@ export default function PDFViewer() {
       isMounted = false;
       if (cleanup) cleanup();
     };
-  }, [instance, fileURL, fileMetadata]);
+  }, [instance, fileURL, fileMetadata, isLoading]);
 
   if (!fileMetadata || !fileURL) {
     return (
