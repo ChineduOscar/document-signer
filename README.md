@@ -20,10 +20,10 @@ A Next.js application that allows users to upload, view, annotate and sign pdf d
 
 ## Tech Stack
 
-- **Frontend**: Next.js, React, TypeScript
-- **State Management**: Redux (with Redux Toolkit)
-- **Styling**: Tailwind CSS
-- **PDF Handling**: PDFTron WebViewer
+- Frontend: Next.js, React, TypeScript
+- State Management: Redux (with Redux Toolkit)
+- Styling: Tailwind CSS
+- PDF Handling: PDFTron WebViewer
 
 ## Getting Started
 
