@@ -27,7 +27,6 @@ export default function PDFViewer() {
       try {
         const WebViewer = (await import('@pdftron/webviewer')).default;
         const licenseKey = process.env.NEXT_PUBLIC_LICENSE_KEY;
-        console.log('License Key:', licenseKey);
 
         const webViewerInstance = await WebViewer(
           {
